@@ -1,5 +1,5 @@
 import './index.scss';
-import { HomeView } from './src/views/home.view';
+import Router from './src/routes/routing.handler';
 
 class main {
   homePage;
@@ -8,10 +8,8 @@ class main {
     this.state = {}
   }
 
-  start = () => {
-    this.homePage = new HomeView();
-    this.homePage.render()
-  }
+  start = () => Router.loadApp();
+
 }
 
 let app = new main();

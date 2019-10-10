@@ -20,6 +20,11 @@ class Router {
     return window.location.origin;
   }
 
+  loadApp = () => {
+    let atLocation = this.current().split(this.host())[1];
+    this.goTo(atLocation);
+  }
+
   goTo = (route) => {
     window.history.pushState(
       {},
