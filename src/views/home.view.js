@@ -2,31 +2,31 @@ import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
 
 const homeTemplate = `
 <div>
-  <div class="nav">
-    <li class="nav-item">
-      <a class="nav-link app-nav-button">Student MS</a>
-    </li>
+  <div class="navbar bg-dark">
+    <a class="navbar-brand text-light app-nav-button">Student MS</a>
   </div>
 
-  <div>
-    <button class="btn btn-success app-add-student-btn">Add New Student</button>
-  </div>
+  <div class="home_container">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success app-add-student-btn">Add New Student</button>
+    </div>
 
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <td>Student Id</td>
-          <td>Name</td>
-          <td>Class</td>
-          <td>City</td>
-          <td>State</td>
-          <td>Country</td>
-        </tr>
-      </thead>
-      <tbody class="app-student-details">
-      </tbody>
-    </table>
+    <div class="home_table--container">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Student Id</td>
+            <th>Name</td>
+            <th>Class</td>
+            <th>City</td>
+            <th>State</td>
+            <th>Country</td>
+          </tr>
+        </thead>
+        <tbody class="app-student-details">
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 `;
@@ -34,6 +34,14 @@ const homeTemplate = `
 const test_data = [
   {
     Id: 1,
+    name: 'prashant sharma',
+    class: '',
+    city: 'nagda',
+    state: 'MP',
+    country: 'India'
+  },
+  {
+    Id: 2,
     name: 'prashant sharma',
     class: '',
     city: 'nagda',
