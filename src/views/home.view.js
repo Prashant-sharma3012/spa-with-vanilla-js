@@ -1,4 +1,5 @@
 import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
+import Router from '../routes/routing.handler';
 
 const homeTemplate = `
 <div>
@@ -72,10 +73,22 @@ export class HomeView {
     });
   }
 
+  addStudent = () => {
+    // call the router function to move to a different route
+    Router.goTo('/manageStudent');
+  }
+
   // method to display the page
   render = () => {
     let root = document.querySelector(FIELD_TO_CLASS_MAP.root);
-    root.insertAdjacentHTML("afterbegin", homeTemplate);
+    // root.insertAdjacentHTML("afterbegin", homeTemplate);
+    root.innerHTML = homeTemplate;
+
+    // add event handlers
+    let addStudentBtn = document.querySelector(FIELD_TO_CLASS_MAP.addStudentBtn);
+    addStudentBtn.addEventListener("click", this.addStudent);
+
+    // render student details
     this.addStudentDetail(test_data);
   }
 

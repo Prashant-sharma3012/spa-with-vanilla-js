@@ -4,7 +4,8 @@ import { HomeView } from './src/views/home.view';
 class main {
   homePage;
   constructor() {
-
+    // this acts as global app state
+    this.state = {}
   }
 
   start = () => {
