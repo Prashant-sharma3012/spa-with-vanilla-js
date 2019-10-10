@@ -81,7 +81,7 @@ export class HomeView {
   // method to display the page
   render = () => {
     let root = document.querySelector(FIELD_TO_CLASS_MAP.root);
-    // root.insertAdjacentHTML("afterbegin", homeTemplate);
+    // i know we should not use innerHTML, will replace it with a better solution
     root.innerHTML = homeTemplate;
 
     // add event handlers

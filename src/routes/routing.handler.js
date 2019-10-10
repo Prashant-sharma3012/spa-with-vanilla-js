@@ -12,13 +12,9 @@ class Router {
     this.route_config = route_config;
   }
 
-  current = () => {
-    return window.location.href
-  }
+  current = () => window.location.href;
 
-  host = () => {
-    return window.location.origin;
-  }
+  host = () => window.location.origin;
 
   loadApp = () => {
     let atLocation = this.current().split(this.host())[1];
