@@ -35,11 +35,9 @@ class DataService {
     let student = this.getStudents().filter(obj => {
       return obj.Id == studentId
     })
+    
     this.setLocal("editStudent", student)
-    setTimeout(() => {
-
-      Router.goTo('/editStudent');
-    }, 0)
+    Router.goTo('/editStudent');
   }
 
   saveEditStudent = (studentData) => {
