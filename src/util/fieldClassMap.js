@@ -8,4 +8,5 @@ export const FIELD_TO_CLASS_MAP = {
   appTable: '.app-student-table',
   studentForm: '.app-student-form',
   editStudentForm: '.app-edit-student-form',
+  goBackFromStudent: '.app-back-from-student',
 }

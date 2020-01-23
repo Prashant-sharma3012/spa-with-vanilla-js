@@ -1,5 +1,6 @@
 import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
 import dataService from '../services/localStorage.service'
+import Router from '../routes/routing.handler';
 
 const studentTemplate = `
 <div>
@@ -36,6 +37,7 @@ const studentTemplate = `
                 </div>
                 <button class="btn btn-success app-add-student-details">Add</button>
               </form>
+              <button class="btn btn-success app-back-from-student">Back</button>
             </div>
           </div>
         </div>
@@ -59,6 +61,8 @@ export class StudentView {
     // console.log(studentData)
     dataService.addStudent(studentData)
   }
+
+  goHome = () => Router.goTo('/');
 
 
   addStudentDetailsOnSubmit = (e) => {
@@ -85,5 +89,8 @@ export class StudentView {
 
     let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
     studentForm.addEventListener("submit", this.addStudentDetailsOnSubmit);
+
+    let goBackToHome = document.querySelector(FIELD_TO_CLASS_MAP.goBackFromStudent);
+    goBackToHome.addEventListener("click", this.goHome);
   }
 }
