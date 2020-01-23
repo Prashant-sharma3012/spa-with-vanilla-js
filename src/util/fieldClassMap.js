@@ -9,4 +9,10 @@ export const FIELD_TO_CLASS_MAP = {
   studentForm: '.app-student-form',
   editStudentForm: '.app-edit-student-form',
   goBackFromStudent: '.app-back-from-student',
+  studentFormContainer: '.app-student-form-container',
+  appToastClass: '.app-toast',
+  appToastId: 'app-toast',
+  addStudentPage: '.app-add-student-page',
+  addStudentPageId: 'app-add-student-page',
+  toastCloseButton: '.app-toast-close-button'
 }

@@ -22,7 +22,6 @@ class DataService {
   addStudent = (student) => {
     let newStudent = { Id: this.getStudents().length + 1, ...student }
     this.setLocal("addStudent", newStudent)
-    Router.goTo('/');
   }
 
   deleteStudent = (action, studentId) => {

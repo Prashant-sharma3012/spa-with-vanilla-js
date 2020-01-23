@@ -1,13 +1,14 @@
 import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
 import dataService from '../services/localStorage.service'
 import Router from '../routes/routing.handler';
+import Toast from './toast';
 
 const studentTemplate = `
-<div>
+<div id="app-add-student-page" class="app-add-student-page">
   <div class="navbar bg-dark">
     <a class="navbar-brand text-light app-nav-button">Student MS</a>
   </div>
-  <section id="cover" class="min-vh-100">
+  <section id="cover" class="min-vh-100 app-student-form-container">
     <div id="cover-caption">
       <div class="container">
         <div class="row text-white">
@@ -64,6 +65,21 @@ export class StudentView {
 
   goHome = () => Router.goTo('/');
 
+  handleToastDismiss = (event) => {
+    let classes = event.target.className.split(' ');
+
+    if (classes.includes(FIELD_TO_CLASS_MAP.toastCloseButton.split('.')[1])) {
+      let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
+      let toast = document.getElementById(FIELD_TO_CLASS_MAP.appToastId);
+      studentForm.removeChild(toast);
+    }
+  }
+
+  notify = (message, type) => {
+    let toast = Toast.getToast(message, type);
+    let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
+    studentForm.insertAdjacentHTML('afterbegin', toast);
+  }
 
   addStudentDetailsOnSubmit = (e) => {
     e.preventDefault();
@@ -77,6 +93,7 @@ export class StudentView {
 
     // console.log(studentData)
     dataService.addStudent(formData)
+    this.notify("Student Added Successfully", "success")
   }
 
   // method to display the page
@@ -92,5 +109,8 @@ export class StudentView {
 
     let goBackToHome = document.querySelector(FIELD_TO_CLASS_MAP.goBackFromStudent);
     goBackToHome.addEventListener("click", this.goHome);
+
+    let addStudentPage = document.querySelector(FIELD_TO_CLASS_MAP.addStudentPage);
+    addStudentPage.addEventListener("click", this.handleToastDismiss);
   }
 }
