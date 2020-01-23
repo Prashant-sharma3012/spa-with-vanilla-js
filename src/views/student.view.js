@@ -13,7 +13,7 @@ const studentTemplate = `
           <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
             <h1 class="display-4 py-2 text-truncate">Fill Details</h1>
             <div class="px-2">
-              <form action="" class="justify-content-center">
+              <form action="" class="app-student-form justify-content-center">
                 <div class="form-group">
                   <label class="sr-only">Name</label>
                   <input type="text" class="form-control" id="name" placeholder="Name">
@@ -46,7 +46,7 @@ const studentTemplate = `
 `;
 
 export class StudentView {
-  addStudentDetails = (e) => {
+  addStudentDetailsOnClick = (e) => {
 
     e.preventDefault()
     let studentData = {
@@ -58,18 +58,32 @@ export class StudentView {
     }
     // console.log(studentData)
     dataService.addStudent(studentData)
-
-    // call the router function to move to a different route
-    // Router.goTo('/');
-
-    // var formElement = document.querySelector("form");
-    // console.log(formElement, new FormData(formElement))
   }
+
+
+  addStudentDetailsOnSubmit = (e) => {
+    e.preventDefault();
+
+    let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
+    let formData = {};
+
+    [...studentForm.elements].map(e => {
+      formData[e.id] = e.value;
+    });
+
+    // console.log(studentData)
+    dataService.addStudent(formData)
+  }
+
   // method to display the page
   render = () => {
     let root = document.querySelector(FIELD_TO_CLASS_MAP.root);
     root.innerHTML = studentTemplate;
-    let addStudentFormBtn = document.querySelector(FIELD_TO_CLASS_MAP.addStudentDetails);
-    addStudentFormBtn.addEventListener("click", this.addStudentDetails);
+
+    // let addStudentFormBtn = document.querySelector(FIELD_TO_CLASS_MAP.addStudentDetails);
+    // addStudentFormBtn.addEventListener("click", this.addStudentDetailsOnClick);
+
+    let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
+    studentForm.addEventListener("submit", this.addStudentDetailsOnSubmit);
   }
 }

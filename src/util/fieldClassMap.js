@@ -5,5 +5,7 @@ export const FIELD_TO_CLASS_MAP = {
   studentDetails: '.app-student-details',
   addStudentDetails: '.app-add-student-details',
   studentEdit: '.app-student-edit',
-  appTable: '.app-student-table'
+  appTable: '.app-student-table',
+  studentForm: '.app-student-form',
+  editStudentForm: '.app-edit-student-form',
 }
