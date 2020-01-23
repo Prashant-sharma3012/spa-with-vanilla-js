@@ -1,48 +1,7 @@
-<!-- This is not used anywhere this is just for aut complete and template creation -->
-<!-- home view templates -->
-<div>
-  <div class="nav">
-    <li class="nav-item">
-      <a class="nav-link app-nav-button">Student MS</a>
-    </li>
-  </div>
-
-  <div>
-    <button class="btn btn-success app-add-student-btn">Add New Student</button>
-  </div>
-
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <td>Student Id</td>
-          <td>Name</td>
-          <td>Class</td>
-          <td>City</td>
-          <td>State</td>
-          <td>Country</td>
-        </tr>
-      </thead>
-      <tbody class="app-student-details">
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-<!-- append this to tbody -->
-<!-- <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr> -->
-
-<!-- student add update template -->
-
-
+import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
+import dataService from '../services/localStorage.service'
+const student = dataService.getEditingStudent()
+const studentTemplate = `
 <div>
   <div class="navbar bg-dark">
     <a class="navbar-brand text-light app-nav-button">Student MS</a>
@@ -84,3 +43,30 @@
     </div>
   </section>
 </div>
+`;
+
+export class editStudent {
+
+  addStudentDetails = (e) => {
+    e.preventDefault()
+    let studentData = {
+      Id: student.Id,
+      name: document.getElementById('name').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      country: document.getElementById('country').value,
+      email: document.getElementById('email').value
+    }
+    dataService.saveEditStudent(studentData)
+
+
+  }
+  // method to display the page
+  render = () => {
+    let root = document.querySelector(FIELD_TO_CLASS_MAP.root);
+    root.innerHTML = studentTemplate;
+    
+    let addStudentFormBtn = document.querySelector(FIELD_TO_CLASS_MAP.addStudentDetails);
+    addStudentFormBtn.addEventListener("click", this.addStudentDetails);
+  }
+}

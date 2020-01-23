@@ -1,9 +1,11 @@
 import { HomeView } from '../views/home.view';
 import { StudentView } from '../views/student.view';
+import { editStudent } from '../views/editStudent.view';
 
 const APP_ROUTES = {
   "/": HomeView,
-  "/manageStudent": StudentView
+  "/manageStudent": StudentView,
+  "/editStudent": editStudent
 }
 
 class Router {

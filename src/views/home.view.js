@@ -1,5 +1,6 @@
 import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
 import Router from '../routes/routing.handler';
+import dataService from '../services/localStorage.service'
 
 const homeTemplate = `
 <div>
@@ -13,15 +14,16 @@ const homeTemplate = `
     </div>
 
     <div class="home_table--container">
-      <table class="table">
+      <table class="table app-student-table">
         <thead class="thead-dark">
           <tr>
-            <th>Student Id</td>
-            <th>Name</td>
-            <th>Class</td>
-            <th>City</td>
-            <th>State</td>
-            <th>Country</td>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody class="app-student-details">
@@ -32,41 +34,24 @@ const homeTemplate = `
 </div>
 `;
 
-const test_data = [
-  {
-    Id: 1,
-    name: 'prashant sharma',
-    class: '',
-    city: 'nagda',
-    state: 'MP',
-    country: 'India'
-  },
-  {
-    Id: 2,
-    name: 'prashant sharma',
-    class: '',
-    city: 'nagda',
-    state: 'MP',
-    country: 'India'
-  }
-]
-
 export class HomeView {
 
   // method to append student details
   addStudentDetail = (students) => {
     let tableBody = document.querySelector(FIELD_TO_CLASS_MAP.studentDetails);
-
     students.map(student => {
 
       let studentDetailTemplate = `
       <tr>
         <td>${student.Id}</td>
         <td>${student.name}</td>
-        <td>${student.class}</td>
+        <td>${student.email}</td>
         <td>${student.city}</td>
         <td>${student.state}</td>
         <td>${student.country}</td>
+        <td >
+        <button name="editStudent" value=${student.Id}>Edit</button>
+        <button name="deleteStudent" value=${student.Id}>Delete</button></td>
       </tr>`;
 
       tableBody.insertAdjacentHTML("beforeend", studentDetailTemplate);
@@ -76,6 +61,12 @@ export class HomeView {
   addStudent = () => {
     // call the router function to move to a different route
     Router.goTo('/manageStudent');
+  }
+
+  handleTableActions = (event) => {
+    event.target.name === "editStudent" ?
+      dataService.editStudent(event.target.value) :
+      event.target.name === "deleteStudent" ? dataService.deleteStudent("delete", event.target.value) : event.preventDefault()
   }
 
   // method to display the page
@@ -88,8 +79,11 @@ export class HomeView {
     let addStudentBtn = document.querySelector(FIELD_TO_CLASS_MAP.addStudentBtn);
     addStudentBtn.addEventListener("click", this.addStudent);
 
+    let studentTable = document.querySelector(FIELD_TO_CLASS_MAP.appTable);
+    studentTable.addEventListener("click", this.handleTableActions);
+
     // render student details
-    this.addStudentDetail(test_data);
+    this.addStudentDetail(dataService.getStudents());
   }
 
 }
