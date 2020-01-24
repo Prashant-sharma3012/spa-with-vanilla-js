@@ -65,21 +65,21 @@ export class StudentView {
 
   goHome = () => Router.goTo('/');
 
-  handleToastDismiss = (event) => {
-    let classes = event.target.className.split(' ');
+  // handleToastDismiss = (event) => {
+  //   let classes = event.target.className.split(' ');
 
-    if (classes.includes(FIELD_TO_CLASS_MAP.toastCloseButton.split('.')[1])) {
-      let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
-      let toast = document.getElementById(FIELD_TO_CLASS_MAP.appToastId);
-      studentForm.removeChild(toast);
-    }
-  }
+  //   if (classes.includes(FIELD_TO_CLASS_MAP.toastCloseButton.split('.')[1])) {
+  //     let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
+  //     let toast = document.getElementById(FIELD_TO_CLASS_MAP.appToastId);
+  //     studentForm.removeChild(toast);
+  //   }
+  // }
 
-  notify = (message, type) => {
-    let toast = Toast.getToast(message, type);
-    let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
-    studentForm.insertAdjacentHTML('afterbegin', toast);
-  }
+  // notify = (message, type) => {
+  //   let toast = Toast.getToast(message, type);
+  //   let studentForm = document.querySelector(FIELD_TO_CLASS_MAP.studentForm);
+  //   studentForm.insertAdjacentHTML('afterbegin', toast);
+  // }
 
   addStudentDetailsOnSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +93,7 @@ export class StudentView {
 
     // console.log(studentData)
     dataService.addStudent(formData)
-    this.notify("Student Added Successfully", "success")
+    Toast.notify("Student Added Successfully", "success")
   }
 
   // method to display the page
@@ -110,7 +110,7 @@ export class StudentView {
     let goBackToHome = document.querySelector(FIELD_TO_CLASS_MAP.goBackFromStudent);
     goBackToHome.addEventListener("click", this.goHome);
 
-    let addStudentPage = document.querySelector(FIELD_TO_CLASS_MAP.addStudentPage);
-    addStudentPage.addEventListener("click", this.handleToastDismiss);
+    // let addStudentPage = document.querySelector(FIELD_TO_CLASS_MAP.addStudentPage);
+    // addStudentPage.addEventListener("click", this.handleToastDismiss);
   }
 }

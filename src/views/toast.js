@@ -1,3 +1,5 @@
+import { FIELD_TO_CLASS_MAP } from '../util/fieldClassMap';
+
 class Toast {
 
   getToast = (message, type) =>
@@ -12,6 +14,25 @@ class Toast {
         ${message}
       </div>
     </div>`
+
+  dismiss = (event) => {
+    let classes = event.target.className.split(' ');
+
+    if (classes.includes(FIELD_TO_CLASS_MAP.toastCloseButton.split('.')[1])) {
+      let appToastRoot = document.querySelector(FIELD_TO_CLASS_MAP.appToastRoot);
+      appToastRoot.innerHTML = "";
+    }
+  }
+
+  notify = (message, type) => {
+    let toast = this.getToast(message, type);
+    let appToastRoot = document.querySelector(FIELD_TO_CLASS_MAP.appToastRoot);
+
+    appToastRoot.insertAdjacentHTML('afterbegin', toast);
+
+    let toastCloseButton = document.querySelector(FIELD_TO_CLASS_MAP.toastCloseButton);
+    toastCloseButton.addEventListener("click", this.dismiss);
+  }
 }
 
 let instance = null;

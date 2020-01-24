@@ -14,5 +14,6 @@ export const FIELD_TO_CLASS_MAP = {
   appToastId: 'app-toast',
   addStudentPage: '.app-add-student-page',
   addStudentPageId: 'app-add-student-page',
-  toastCloseButton: '.app-toast-close-button'
+  toastCloseButton: '.app-toast-close-button',
+  appToastRoot: '.app-toast-root'
 }
